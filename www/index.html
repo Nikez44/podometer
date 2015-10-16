@@ -6,10 +6,10 @@
 
     <link rel="stylesheet" href="css/index.css"/>
     <link rel="stylesheet" href="vendor/jquery-mobile/css/jquery.mobile-1.4.5.min.css"/>
+    <script type="text/javascript" src="cordova.js"></script>
     <script src="js/index.js"></script>
     <script src="vendor/jquery-mobile/js/jquery-2.1.4.min.js"></script>
     <script src="vendor/jquery-mobile/js/jquery.mobile-1.4.5.min.js"></script>
-
 </head>
 <body>
 
@@ -24,7 +24,22 @@
         <section class="ui-bar ui-corner-all ui-bar-b" style="text-align: center">
             <div>
                 <p>Pasos</p>
-                <p>0</p>
+                <p id="steps">0</p>
+
+                <p id="difX">Dif x:</p>
+                <p id="difY">Dif y:</p>
+                <div id="previous">
+                    <p>Aceleracion X: 0</p>
+                    <p>Aceleracion Y: 0</p>
+                    <p>Aceleracion Z: 0</p>
+                </div>
+                <br/>
+                <div id="current">
+                    <p>Aceleracion X: 0</p>
+                    <p>Aceleracion Y: 0</p>
+                    <p>Aceleracion Z: 0</p>
+                </div>
+
             </div>
             <br/>
 
@@ -43,7 +58,8 @@
                 </div>
             </div>
 
-
+            <button onclick="startWatch()">Start</button>
+            <button onclick="stopWatch()">Stop</button>
 
         </section>
     </div>
