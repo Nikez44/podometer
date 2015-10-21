@@ -30,37 +30,23 @@ function stopWatch(){
 
 function onSucess(acceleration){
 
-    $('#steps').html(steps);
-
     prevX = currX;
     prevY = currY;
     prevZ = currZ;
-
-    $('#previous').html(' Aceleracion X:' + prevX + '<br/>' +
-        ' Aceleracion Y:' + prevY + '<br/>' +
-        ' Aceleracion Z:' + prevZ + '<br/>');
 
     currX = acceleration.x;
     currY = acceleration.y;
     currZ = acceleration.z;
 
-    $('#current').html(' Aceleracion X:' + currX + '<br/>' +
-        ' Aceleracion Y:' + currY + '<br/>' +
-        ' Aceleracion Z:' + currZ + '<br/>');
-
     difX = Math.abs(currX - prevX);
+    difY = Math.abs(currY - prevY);
 
-    $('#difX').html('Dif x: '+difX);
 
     if (difX > 1.5){
         moveX = true;
     }else{
         moveX =  false
     }
-
-    difY = Math.abs(currY - prevY);
-
-    $('#difY').html('Dif y: '+difY);
 
     if (difY > 1 ){
         moveY = true;
@@ -71,6 +57,8 @@ function onSucess(acceleration){
     if (moveX && moveY){
         steps++;
     }
+
+    $('#steps').html(steps);
 }
 
 function onError(){

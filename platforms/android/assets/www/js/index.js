@@ -16,8 +16,10 @@ var currZ = 0;
 var moveX = false;
 var moveY = false;
 
+var ALPHA = 2;
+
 function startWatch(){
-    var options = { frequency: 750 };
+    var options = { frequency: 500 };
     watchID = navigator.accelerometer.watchAcceleration(onSucess, onError, options);
 }
 
@@ -49,20 +51,34 @@ function onSucess(acceleration){
         ' Aceleracion Z:' + currZ + '<br/>');
 
     difX = Math.abs(currX - prevX);
+    difY = Math.abs(currY - prevY);
+    difZ = Math.abs(currZ - prevZ);
 
-    $('#difX').html('Dif x: '+difX);
+    $('#difX').html('Dif x: '+ difX);
+    $('#difY').html('Dif y: '+ difY);
+    $('#difZ').html('Dif z: '+ difZ);
 
-    if (difX > 1.5){
+    /*
+
+    if (currX != (prevX + NOISE) || currX != (prevX - NOISE)){
+        moveX = true;
+    }
+
+    if (currY != (prevY + NOISE) || currY != (prevY - NOISE)){
+        moveY = true;
+    }
+
+    if (difX > ALPHA && difY > ALPHA){
+        steps++;
+    }*/
+
+    if (difX > ALPHA && difX < ALPHA*2){
         moveX = true;
     }else{
         moveX =  false
     }
 
-    difY = Math.abs(currY - prevY);
-
-    $('#difY').html('Dif y: '+difY);
-
-    if (difY > 1 ){
+    if (difY >  ALPHA && difY < ALPHA*2){
         moveY = true;
     }else{
         moveY = false
@@ -71,6 +87,7 @@ function onSucess(acceleration){
     if (moveX && moveY){
         steps++;
     }
+
 }
 
 function onError(){
