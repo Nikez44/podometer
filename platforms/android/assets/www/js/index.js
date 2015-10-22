@@ -19,7 +19,7 @@ var moveX = false;
 var moveY = false;
 var isNoise = true;
 
-var NOISE = 2;
+var NOISE = 2.5;
 
 function startWatch(){
     steps = 0;

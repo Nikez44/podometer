@@ -4,24 +4,24 @@
 var gWatchID = null;
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-    startWatch();
+    startWatchCompass();
 }
 
-function startWatch() {
+function startWatchCompass() {
     var options = { frequency: 1000 };
     if (!gWatchID) {
-        gWatchID = navigator.compass.watchHeading(onSuccess, onError, options);
+        gWatchID = navigator.compass.watchHeading(onCompassSuccess, onCompassError, options);
     }
 }
 
-function stopWatch() {
+function stopWatchCompass() {
     if (gWatchID) {
         navigator.compass.clearWatch(watchID);
         gWatchID = null;
     }
 }
 
-function onSuccess(heading) {
+function onCompassSuccess(heading) {
     var element = document.getElementById('heading');
     element.innerHTML = 'Heading: ' + heading.magneticHeading + '<br>';
 
@@ -64,6 +64,6 @@ function onSuccess(heading) {
         element.innerHTML = 'Direction: Norte (N)';
     }
 }
-function onError(compassError) {
+function onCompassError(compassError) {
     alert('Compass error: ' + compassError.code);
 }
